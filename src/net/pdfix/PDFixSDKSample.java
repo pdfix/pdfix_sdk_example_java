@@ -33,7 +33,7 @@ public class PDFixSDKSample {
       
       OcrWithTesseract.run(email, licenseKey, openPath, 
         Utils.getAbsolutePath("output/OcrWithTesseract.pdf"), 
-        Utils.getAbsolutePath("resources/tesseract"), configPath, new OcrTesseractParams());
+        Utils.getAbsolutePath("resources/tesseract"), "eng", new OcrTesseractParams());
       
       SetFormFieldValue.run(email, licenseKey, openPath, 
         Utils.getAbsolutePath("output/SetFormFieldValue.pdf"));      
