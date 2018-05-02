@@ -60,7 +60,10 @@ public class AddComment {
         annot.AddReply("Mark Fish", "This is some reply");
         
         doc.ReleasePage(page);
-        doc.Save(savePath, PdfSaveFlags.kSaveFull);
+        
+        if (!doc.Save(savePath, PdfSaveFlags.kSaveFull))
+            throw new Exception(pdfix.GetError());
+        
         doc.Close();
         pdfix.Destroy();
     }    

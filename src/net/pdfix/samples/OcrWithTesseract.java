@@ -35,7 +35,7 @@ public class OcrWithTesseract {
         System.out.println("OcrWithTesseract");
     
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
-        System.load(Utils.getAbsolutePath(Utils.getModuleName("tesseract")));
+        System.load(Utils.getAbsolutePath(Utils.getModuleName("ocr_tesseract")));
 
         Pdfix pdfix = new Pdfix();
         if (pdfix == null)

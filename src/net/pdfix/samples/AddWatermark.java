@@ -43,10 +43,12 @@ public class AddWatermark {
         if (doc == null)
           throw new Exception(pdfix.GetError());
         
-        watermarkParams.h_value = 10;
-        watermarkParams.v_value = 10;
-        watermarkParams.scale = 10;
-        watermarkParams.opacity = 10;
+        watermarkParams.h_value = .5;
+        watermarkParams.v_value = .5;
+        watermarkParams.percentage_vals = 1;
+        watermarkParams.scale = 1.5;
+        watermarkParams.opacity = .5;
+        watermarkParams.order_top = 1;
         
         if (!doc.AddWatermarkFromImage(watermarkParams, imgPath))
           throw new Exception(pdfix.GetError());
