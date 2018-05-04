@@ -13,7 +13,6 @@
 \snippet /Initialization.java Initialization_java
 */
 
-//\cond INTERNAL
 //! [Initialization_java]
 package net.pdfix.samples;
 
@@ -47,4 +46,3 @@ public class Initialization {
     }  
 }
 //! [Initialization_java]
-//\endcond

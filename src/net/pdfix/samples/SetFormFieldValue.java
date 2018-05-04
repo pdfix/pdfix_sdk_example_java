@@ -13,7 +13,6 @@
 \snippet /SetFormFieldValue.java SetFormFieldValue_java
 */
 
-//\cond INTERNAL
 //! [SetFormFieldValue_java]
 package net.pdfix.samples;
 import net.pdfix.Utils;
@@ -53,4 +52,3 @@ public class SetFormFieldValue {
     }
 }
 //! [SetFormFieldValue_java]
-//\endcond

@@ -13,7 +13,6 @@
 \snippet /AddComment.java AddComment_java
 */
 
-//\cond INTERNAL
 //! [AddComment_java]
 package net.pdfix.samples;
 
@@ -69,4 +68,3 @@ public class AddComment {
     }    
 }
 //! [AddComment_java]
-//\endcond

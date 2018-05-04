@@ -20,9 +20,11 @@ public class PDFixSDKSample {
       
       Initialization.run(email, licenseKey);
       
-      AddComment.run(email, licenseKey, openPath, Utils.getAbsolutePath("output/AddComment.pdf"));      
+      AddComment.run(email, licenseKey, openPath, Utils.getAbsolutePath("output/AddComment.pdf")); 
+      
       AddTags.run(email, licenseKey, openPath, Utils.getAbsolutePath("output/AddTags.pdf"), 
         configPath);      
+      
       AddWatermark.run(email, licenseKey, openPath, 
         Utils.getAbsolutePath("output/AddWatermark.pdf"),
         Utils.getAbsolutePath("resources/watermark.png"), 
@@ -33,7 +35,7 @@ public class PDFixSDKSample {
       
       OcrWithTesseract.run(email, licenseKey, openPath, 
         Utils.getAbsolutePath("output/OcrWithTesseract.pdf"), 
-        Utils.getAbsolutePath("resources/tesseract"), "eng", new OcrTesseractParams());
+        Utils.getAbsolutePath("resources/"), "eng", new OcrTesseractParams());
       
       SetFormFieldValue.run(email, licenseKey, openPath, 
         Utils.getAbsolutePath("output/SetFormFieldValue.pdf"));      

@@ -1,7 +1,6 @@
-Resources required to run samples
+resources required to run samples
 
-test.pdf - input file 
-config.json - config file
-watermark.png - image for placing the watermark on the page
-tessdata - copy tesseract data folder here
-test.pfx - test certificate for digital signature
+/test.pdf - sample PDF to process
+/watermark.png - image used for watermark
+/test.pfx - sample digital signature 
+/tessdata/ - folder for Tesseract OCR data (not present in the repository please copy from Tesserct official web site)

@@ -13,7 +13,6 @@
 \snippet /AddWatermark.java AddWatermark_java
 */
 
-//\cond INTERNAL
 //! [AddWatermark_java]
 package net.pdfix.samples;
 import net.pdfix.Utils;
@@ -61,4 +60,3 @@ public class AddWatermark {
     }
 }
 //! [AddWatermark_java]
-//\endcond

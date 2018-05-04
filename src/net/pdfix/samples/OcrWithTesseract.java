@@ -14,7 +14,6 @@ NOTE: If your tessdata dir is in the /usr/share/tesseract-ocr dir, data_path sho
 \snippet /OcrWithTesseract.java OcrWithTesseract_java
 */
 
-//\cond INTERNAL
 //! [OcrWithTesseract_java]
 package net.pdfix.samples;
 
@@ -74,4 +73,3 @@ public class OcrWithTesseract {
     }
 }
 //! [OcrWithTesseract_java]
-//\endcond

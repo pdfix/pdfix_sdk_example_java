@@ -13,7 +13,6 @@ Example how to automatically add tags into the document.
 \snippet /AddTags.java AddTags_java
 */
 
-//\cond INTERNAL
 //! [AddTags_java]
 package net.pdfix.samples;
 
@@ -65,4 +64,3 @@ public class AddTags {
     }  
 }
 //! [AddTags_java]
-//\endcond

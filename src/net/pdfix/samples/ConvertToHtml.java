@@ -12,7 +12,6 @@ Example how to convert whole PDF document to HTML.
 \snippet /ConvertToHtml.java ConvertToHtml_java
 */
 
-//\cond INTERNAL
 //! [ConvertToHtml_java]
 package net.pdfix.samples;
 
@@ -90,4 +89,3 @@ public class ConvertToHtml {
       }
 }
 //! [ConvertToHtml_java]
-//\endcond
