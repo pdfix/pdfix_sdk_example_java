@@ -1,32 +1,31 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// AddComment.java
+// GetWhitespace.java
 // Copyright (c) 2018 PDFix. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*! 
 \page JAVA_Samples Java Samples
-- \subpage AddComment_java
+- \subpage GetWhitespace_java
 */
 /*! 
-\page AddComment_java Add Comment Sample
-// Example how to add a comment on PDF page.
-\snippet /AddComment.java AddComment_java
+\page GetWhitespace_java Get Page Whitespace Sample
+// Example how to get whitespace areas on PDF page.
+\snippet /GetWhitespace.java GetWhitespace_java
 */
 
-//! [AddComment_java]
+//! [GetWhitespace_java]
 package net.pdfix.samples;
 
 import net.pdfix.Utils;
 import net.pdfix.pdfixlib.*;
 
-public class AddComment {
+public class GetWhitespace {
     public static void run (
       String email,               
       String licenseKey,
-      String openPath,
-      String savePath
+      String openPath
     ) throws Exception {
-        System.out.println("AddComment");
+        System.out.println("GetWhitespace");
         
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
@@ -43,31 +42,24 @@ public class AddComment {
         PdfPage page = doc.AcquirePage(0);
         if (page == null)
             throw new Exception(pdfix.GetError());
-
-        PdfRect cropBox = page.GetCropBox();
         
-        // place annotation to the middle of the page
-        PdfRect annotRect = new PdfRect();
-        annotRect.left = (cropBox.right + cropBox.left) / 2. - 10;
-        annotRect.bottom = (cropBox.top + cropBox.bottom) / 2. - 10;
-        annotRect.right = (cropBox.right + cropBox.left) / 2. + 10;
-        annotRect.top = (cropBox.top + cropBox.bottom) / 2. + 10;
-        
-        PdfTextAnnot annot = page.AddTextAnnot(-1, annotRect);
-        if (annot == null)
+        PdePageMap pageMap = page.AcquirePageMap();
+        if (pageMap == null)
             throw new Exception(pdfix.GetError());
-            
-        annot.SetAuthor("Peter brown");
-        annot.SetContents("This is my comment");
-        annot.AddReply("Mark Fish", "This is some reply");
+        
+        PdfWhitespaceParams whitespaceParams = new PdfWhitespaceParams();
+        // set watermark width in user space coordinates
+        whitespaceParams.width = 100;
+        // set watermark height in user space coordinates
+        whitespaceParams.height = 50;
+        PdfRect bbox = pageMap.GetWhitespace(whitespaceParams, 0);
+        
+            // use the bbox to place watermark into it - AddWatermark example
+            // ...
         
         doc.ReleasePage(page);
-        
-        if (!doc.Save(savePath, PdfSaveFlags.kSaveFull))
-            throw new Exception(pdfix.GetError());
-        
         doc.Close();
         pdfix.Destroy();
-    }    
+    }
 }
-//! [AddComment_java]
+//! [GetWhitespace_java]

@@ -38,7 +38,7 @@ public class Initialization {
         if (pdfix.GetVersionMajor() != Pdfix.PDFIX_VERSION_MAJOR || 
           pdfix.GetVersionMinor() != Pdfix.PDFIX_VERSION_MINOR ||
           pdfix.GetVersionPatch() != Pdfix.PDFIX_VERSION_PATCH)
-            throw new Exception(pdfix.GetError());
+            throw new Exception("Invalid PDFix SDK version.");
 
         // ...
 
