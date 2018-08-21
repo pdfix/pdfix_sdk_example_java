@@ -35,10 +35,8 @@ public class ExtractImages {
         if (elemType == PdfElementType.kPdeImage) {
             PdeImage image = (PdeImage)element;
 
-            PdfRect elemRect = null;
-            PdfDevRect elemDevRect = null;
-            element.GetBBox();
-            pageView.RectToDevice(elemRect);
+            PdfRect elemRect = element.GetBBox();
+            PdfDevRect elemDevRect = pageView.RectToDevice(elemRect);
             int elem_width = elemDevRect.right - elemDevRect.left;
             int elem_height = elemDevRect.bottom - elemDevRect.top;
             if (elem_height == 0 || elem_width == 0)
@@ -49,9 +47,9 @@ public class ExtractImages {
                 pageView.GetDeviceHeight(), PsImageDIBFormat.kImageDIBFormatArgb);
             if (psImage == null)
                 throw new Exception(pdfix.GetError());
-            PdfPageRenderParams renderParams = null;
+            PdfPageRenderParams renderParams = new PdfPageRenderParams();
             renderParams.image = psImage;
-            pageView.GetDeviceMatrix();
+            renderParams.matrix = pageView.GetDeviceMatrix();
             page.DrawContent(renderParams);
 
             System.out.println(savePath + "/ExtractImages_" + Integer.toString(++imageIndex) + ".png");
