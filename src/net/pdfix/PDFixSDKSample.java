@@ -5,6 +5,7 @@
 
 package net.pdfix;
 
+import java.io.File;
 import net.pdfix.ocrtesseract.OcrTesseractParams;
 import net.pdfix.pdfixlib.PdfFlattenAnnotsParams;
 import net.pdfix.pdfixlib.PdfImageParams;
@@ -19,6 +20,9 @@ public class PDFixSDKSample {
             String licenseKey = "LICENSE_KEY";                                    // license key
             String openPath = Utils.getAbsolutePath("resources/test.pdf");        // source PDF document
             String configPath = Utils.getAbsolutePath("resources/config.json");   // configuration file
+            
+            // create output folder
+            new File(Utils.getAbsolutePath("output")).mkdirs();
 
             Initialization.run(email, licenseKey);             
 
@@ -54,12 +58,12 @@ public class PDFixSDKSample {
               Utils.getAbsolutePath("output/ExportFormFieldValues.txt"));
 
             ExtractImages.run(email, licenseKey, openPath,
-              Utils.getAbsolutePath("output/ExtractImages/"),
+              Utils.getAbsolutePath("output/"),
               800,
               new PdfImageParams());
 
             ExtractTables.run(email, licenseKey, openPath, 
-              Utils.getAbsolutePath("output/ExtractTables/"),
+              Utils.getAbsolutePath("output/"),
               configPath);
 
             ExtractText.run(email, licenseKey, openPath, 
@@ -102,6 +106,8 @@ public class PDFixSDKSample {
 
             SetFormFieldValue.run(email, licenseKey, openPath, 
               Utils.getAbsolutePath("output/SetFormFieldValue.pdf"));
+            
+            ThreadSafePdfix.run(email, licenseKey, openPath);
         }
             catch (Exception ex) {
             System.out.println(ex.getMessage());
