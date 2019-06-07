@@ -27,8 +27,6 @@ public class ExportFormFieldValues {
       String openPath,
       String savePath
     ) throws Exception {
-        System.out.println("ExportFormFieldValues");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

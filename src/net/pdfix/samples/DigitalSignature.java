@@ -27,9 +27,7 @@ public class DigitalSignature {
       String savePath,
       String pfxPath,
       String pfxPassword
-    ) throws Exception {
-        System.out.println("DigitalSignature");
-        
+    ) throws Exception {      
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -43,9 +41,9 @@ public class DigitalSignature {
             throw new Exception(pdfix.GetError());
         
         PdfDigSig digSig = pdfix.CreateDigSig();
-        if (digSig == null) {
+        if (digSig == null)
             throw new Exception(pdfix.GetError());
-        }
+        
         digSig.SetReason("Testing PDFix API");
         digSig.SetLocation("Location");
         digSig.SetContactInfo("info@pdfix.net");

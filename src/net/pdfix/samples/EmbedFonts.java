@@ -26,8 +26,6 @@ public class EmbedFonts {
       String openPath,
       String savePath
     ) throws Exception {
-        System.out.println("EmbedFonts");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

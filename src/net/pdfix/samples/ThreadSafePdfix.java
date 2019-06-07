@@ -43,8 +43,7 @@ public class ThreadSafePdfix {
                     PdePageMap pageMap = page.AcquirePageMap();
                     // some processing
                     Thread.sleep(1000);
-                    page.ReleasePageMap();
-                    doc.ReleasePage(page);
+                    page.Release();
                     System.out.println(operation + " : finished execution...");
                 } finally {
                     // calling release() after a successful acquire()

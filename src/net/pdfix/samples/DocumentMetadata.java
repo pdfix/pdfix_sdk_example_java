@@ -27,8 +27,6 @@ public class DocumentMetadata {
       String savePath,
       String xmlPath
     ) throws Exception {
-        System.out.println("DocumentMetadata");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

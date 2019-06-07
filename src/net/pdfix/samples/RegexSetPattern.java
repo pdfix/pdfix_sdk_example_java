@@ -25,8 +25,6 @@ public class RegexSetPattern {
       String licenseKey,
       String text
     ) throws Exception {
-        System.out.println("RegexSetPattern");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -69,7 +67,6 @@ public class RegexSetPattern {
                 int pos = regex.GetPosition();
                 int len = regex.GetLength();
                 String matchText = regex.GetText();
-                System.out.println(matchText);
             }
         }
         regex.Destroy();

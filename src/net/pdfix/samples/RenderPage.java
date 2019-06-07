@@ -26,9 +26,7 @@ public class RenderPage {
       String openPath,
       String imgPath,
       Double zoom
-    ) throws Exception {
-        System.out.println("RenderPage");
-        
+    ) throws Exception {       
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -73,9 +71,9 @@ public class RenderPage {
             throw new Exception(pdfix.GetError());
         stream.Destroy();
         
-        page.ReleasePageView(pageView);
-        page.ReleasePageMap();
-        doc.ReleasePage(page);
+
+        pageView.Release();
+        page.Release();
         doc.Close();
     }
 }

@@ -27,8 +27,6 @@ public class AddTags {
       String savePath,                          // output HTML file
       String configPath                         // configuration file
     ) throws Exception {        
-        System.out.println("AddTags");
-
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

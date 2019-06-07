@@ -114,8 +114,6 @@ public class ExtractTables {
         String savePath,                    // directory where to extract tables
         String configPath
     ) throws Exception {
-        System.out.println("ExtractTables");
-
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -132,8 +130,6 @@ public class ExtractTables {
         
         int numPages = doc.GetNumPages();
         for (int i = 0; i < numPages; i++) {
-            System.out.println("Processing pages ..." + (i + 1) + "/" + numPages);
-            
             PdfPage page = doc.AcquirePage(i);
             if (page == null)
                 throw new Exception(pdfix.GetError());
@@ -147,9 +143,8 @@ public class ExtractTables {
             
             SaveTable(element, savePath);
             
-            doc.ReleasePage(page);
+            page.Release();
         }
-        System.out.println((tableIndex - 1) + " tables found");
         doc.Close();
         pdfix.Destroy();
     }

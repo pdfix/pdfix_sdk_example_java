@@ -29,8 +29,6 @@ public class MakeAccessible {
       String title,
       String configPath
     ) throws Exception {
-        System.out.println("MakeAccessible");
-
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
         // initialize Pdfix
         Pdfix pdfix = new Pdfix();

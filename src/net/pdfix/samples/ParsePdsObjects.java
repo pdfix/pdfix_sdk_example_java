@@ -1,25 +1,28 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// RemoveComments.java
+// ParsePdsObjects.java
 // Copyright (c) 2018 PDFix. All Rights Reserved.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*!
+/*! 
 \page JAVA_Samples Java Samples
-- \subpage RemoveComments_java
+- \subpage ParsePdsObjects_java
 */
-/*!
-\page RemoveComments_java Remove Comments Sample
-Example how to remove from a first highlight annot with it's popup and all replies.
-\snippet /RemoveComments.java RemoveComments_java
+/*! 
+\page ParsePdsObjects_java Parse PDF Objects Sample
+// Example how to parse low level PDF objects.
+\snippet /ParsePdsObjects.java ParsePdsObjects_java
 */
 
-//! [RemoveComments_java]
+//! [ParsePdsObjects_java]
 package net.pdfix.samples;
 
 import net.pdfix.Utils;
 import net.pdfix.pdfixlib.*;
 
-public class RemoveComments {
+public class ParsePdsObjects {
+    public static void parseObject(PdsObject object) {
+    }
+    
     public static void run (
       String email,               
       String licenseKey,
@@ -38,23 +41,12 @@ public class RemoveComments {
         if (doc == null)
             throw new Exception(pdfix.GetError());
         
-        PdfPage page = doc.AcquirePage(0);
-        if (page == null)
-            throw new Exception(pdfix.GetError());
+        PdsObject root = doc.GetRootObject();
         
-        for (int i = 0; i < page.GetNumAnnots(); i = i + 1) {
-            PdfAnnot annot = page.GetAnnot(i);
-            if (annot.GetSubtype() == PdfAnnotSubtype.kAnnotHighlight){
-                page.RemoveAnnot(i,
-                        pdfix.kRemoveAnnotPopup | pdfix.kRemoveAnnotReply);
-                break;
-            }
-        }
-        
-        page.Release();
-        doc.Save(savePath, PdfSaveFlags.kSaveFull);
+        parseObject(root);
+
         doc.Close();
-        pdfix.Destroy();        
-    }
+        pdfix.Destroy();
+    }    
 }
-//! [RemoveComments_java]
+//! [ParsePdsObjects_java]

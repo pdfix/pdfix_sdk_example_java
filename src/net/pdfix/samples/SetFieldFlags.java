@@ -26,8 +26,6 @@ public class SetFieldFlags {
       String openPath,
       String savePath
     ) throws Exception {
-        System.out.println("SetFieldFlags");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

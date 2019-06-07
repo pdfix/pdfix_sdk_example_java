@@ -28,11 +28,8 @@ public class OcrWithTesseract {
       String openPath,                      // source PDF document
       String savePath,                      // output PDF document
       String dataPath,                      // path to OCR data
-      String language,                      // default OCR language
-      OcrTesseractParams ocrParams          // OCR params    
-    ) throws Exception {        
-        System.out.println("OcrWithTesseract");
-    
+      String language                       // default OCR language
+    ) throws Exception {    
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
         System.load(Utils.getAbsolutePath(Utils.getModuleName("ocr_tesseract")));
 
@@ -47,28 +44,25 @@ public class OcrWithTesseract {
         if (ocr == null)
             throw new Exception("OcrTesseract initialization fail");
 
-        System.out.println( ocr.GetVersionMajor() + "." +  
-          ocr.GetVersionMinor() + "." + ocr.GetVersionPatch());
-
         if (!ocr.Initialize(pdfix))
             throw new Exception(pdfix.GetError());
 
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());
-    
+
         ocr.SetLanguage(language);
-        ocr.SetData(dataPath);
-    
+        ocr.SetDataPath(dataPath);
+
         TesseractDoc ocrDoc = ocr.OpenOcrDoc(doc);
         if (ocrDoc == null)
             throw new Exception(pdfix.GetError());
-    
-        if (!ocrDoc.Save(savePath, ocrParams))
-            throw new Exception(pdfix.GetError());
-    
+        
+//        if (!ocrDoc.Save(savePath, ocrParams))
+//            throw new Exception(pdfix.GetError());
+
         ocrDoc.Close();
-        doc.Close();       
+        doc.Close();
         pdfix.Destroy();
     }
 }

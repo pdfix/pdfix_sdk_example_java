@@ -25,8 +25,6 @@ public class GetWhitespace {
       String licenseKey,
       String openPath
     ) throws Exception {
-        System.out.println("GetWhitespace");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -54,10 +52,10 @@ public class GetWhitespace {
         whitespaceParams.height = 50;
         PdfRect bbox = pageMap.GetWhitespace(whitespaceParams, 0);
         
-            // use the bbox to place watermark into it - AddWatermark example
-            // ...
+        // use the bbox to place watermark into it - AddWatermark example
+        // ...
         
-        doc.ReleasePage(page);
+        page.Release();
         doc.Close();
         pdfix.Destroy();
     }

@@ -25,8 +25,6 @@ public class SetFormFieldValue {
       String openPath,
       String savePath
     ) throws Exception {
-        System.out.println("SetFormFieldValue");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -34,11 +32,11 @@ public class SetFormFieldValue {
             throw new Exception("Pdfix initialization fail");
 
         if (!pdfix.Authorize(email, licenseKey))
-            throw new Exception(pdfix.GetError());
+            throw new Exception(Integer.toString(pdfix.GetErrorType()));
 
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
-            throw new Exception(pdfix.GetError());
+            throw new Exception(Integer.toString(pdfix.GetErrorType()));
 
         PdfFormField field = doc.GetFormFieldByName("Text1");
         if (field != null) {

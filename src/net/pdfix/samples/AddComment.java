@@ -25,9 +25,7 @@ public class AddComment {
       String licenseKey,
       String openPath,
       String savePath
-    ) throws Exception {
-        System.out.println("AddComment");
-        
+    ) throws Exception {        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -35,7 +33,7 @@ public class AddComment {
             throw new Exception("Pdfix initialization fail");
         if (!pdfix.Authorize(email, licenseKey))
             throw new Exception(pdfix.GetError());
-
+        
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());
@@ -61,7 +59,7 @@ public class AddComment {
         annot.SetContents("This is my comment");
         annot.AddReply("Mark Fish", "This is some reply");
         
-        doc.ReleasePage(page);
+        page.Release();
         
         if (!doc.Save(savePath, PdfSaveFlags.kSaveFull))
             throw new Exception(pdfix.GetError());

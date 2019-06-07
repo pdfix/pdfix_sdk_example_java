@@ -42,7 +42,7 @@ public class ExtractImages {
             if (elem_height == 0 || elem_width == 0)
                 return;
 
-            image.SetRenderMode(PdfRenderMode.kRenderElem);
+            image.SetRender(true);
             PsImage psImage = pdfix.CreateImage(pageView.GetDeviceWidth(),
                 pageView.GetDeviceHeight(), PsImageDIBFormat.kImageDIBFormatArgb);
             if (psImage == null)
@@ -52,10 +52,9 @@ public class ExtractImages {
             renderParams.matrix = pageView.GetDeviceMatrix();
             page.DrawContent(renderParams);
 
-            System.out.println(savePath + "/ExtractImages_" + Integer.toString(++imageIndex) + ".png");
             psImage.SaveRect(savePath, imgParams, elemDevRect);
             psImage.Destroy();
-            image.SetRenderMode(PdfRenderMode.kRenderElem);
+            image.SetRender(true);
         }
         int count = element.GetNumChildren();
         if (count == 0)
@@ -76,8 +75,6 @@ public class ExtractImages {
       int renderWidth,                      // with of the rendered page in pixels (image )
       PdfImageParams imgParams              // image parameters
     ) throws Exception {
-        System.out.println("ExtractImages");
-          // initialize Pdfix
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -116,10 +113,9 @@ public class ExtractImages {
                 throw new Exception(pdfix.GetError());
             SaveImage(element, savePath, imgParams, page, pageView);
 
-            doc.ReleasePage(page);
+            page.Release();
         }
         
-        System.out.println(Integer.toString(imageIndex) + " images found");
         doc.Close();
         pdfix.Destroy();
     }

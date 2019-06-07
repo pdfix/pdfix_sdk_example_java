@@ -27,8 +27,6 @@ public class AddWatermark {
       String imgPath,
       PdfWatermarkParams watermarkParams
     ) throws Exception {
-        System.out.println("AddWatermark");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
         
         Pdfix pdfix = new Pdfix();

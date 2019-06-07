@@ -49,8 +49,6 @@ public class ExtractText {
       String savePath,
       String configPath
     ) throws Exception {
-        System.out.println("ExtractText");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -62,35 +60,29 @@ public class ExtractText {
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());
-        System.out.println("<!--PDFix SDK " + pdfix.GetVersionMajor() + "." + 
-                pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch() + ""
-                        + " conversion PDF to TXT. License: http://pdfix.net/terms -->");
         int numPages = doc.GetNumPages();
         
         StringBuilder ss = new StringBuilder();
         
-        for (int i = 0; i < numPages; i = i + 1) {
-            System.out.println("Processing pages..." + i + 1 + "/" + numPages);
-            System.out.println("Page:" + i);
-            
+        for (int i = 0; i < numPages; i = i + 1) {           
             PdfPage page = doc.AcquirePage(i);
             if (page == null)
-                throw new Exception("Pdfix initialization fail");
+                throw new Exception(pdfix.GetError());
             PdePageMap pageMap = page.AcquirePageMap();
             if (pageMap == null)
-                throw new Exception("Pdfix initialization fail");
+                throw new Exception(pdfix.GetError());
             
             PdeElement container = pageMap.GetElement();
             if (container == null)
-                throw new Exception("Pdfix initialization fail");
+                throw new Exception(pdfix.GetError());
             
             GetText(container, ss, true);
             
-            doc.ReleasePage(page);
+            page.Release();
         }
         PsFileStream stream = pdfix.CreateFileStream(savePath, PsFileMode.kPsWrite);
         if (stream == null)
-            throw new Exception("Pdfix initialization fail");
+            throw new Exception(pdfix.GetError());
         stream.Write(stream.GetPos(), ss.toString().getBytes());
         stream.Destroy();
         

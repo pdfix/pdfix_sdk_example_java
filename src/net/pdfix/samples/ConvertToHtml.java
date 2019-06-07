@@ -28,8 +28,6 @@ public class ConvertToHtml {
       String configPath,                        // configuration file
       PdfHtmlParams htmlParams
     ) throws Exception {     
-        System.out.println("ConvertToHtml");
-
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdf_to_html")));
 

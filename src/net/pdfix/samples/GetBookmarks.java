@@ -40,8 +40,6 @@ public class GetBookmarks {
       String licenseKey,
       String openPath
     ) throws Exception {
-        System.out.println("GetBookmarks");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

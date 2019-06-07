@@ -24,8 +24,6 @@ public class Initialization {
       String email,                                     // authorization email   
       String licenseKey                                 // license key
     ) throws Exception {       
-        System.out.println("Initialization");
-
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();

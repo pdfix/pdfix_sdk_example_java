@@ -26,8 +26,6 @@ public class RegexSearch {
       String openPath,
       String regexPattern
     ) throws Exception {
-        System.out.println("RegexSearch");
-        
         System.load(Utils.getAbsolutePath(Utils.getModuleName("pdfix")));
 
         Pdfix pdfix = new Pdfix();
@@ -64,7 +62,6 @@ public class RegexSearch {
                         int pos = regex.GetPosition();
                         int len = regex.GetLength();
                         String match = text.substring((startPos + pos), len);
-                        System.out.println(match);
                         startPos += pos + 1;
                     }
                     else 
@@ -74,7 +71,7 @@ public class RegexSearch {
         }
         regex.Destroy();
         
-        doc.ReleasePage(page);
+        page.Release();
         doc.Close();
         pdfix.Destroy();
     }
