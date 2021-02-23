@@ -1,5 +1,10 @@
-nbproject/private
+.vscode
+.settings
+.classpath
+.project
 build
 dist
+target
 output
-*.dylib
+pdfix
+src/main/resources/lib

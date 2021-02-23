@@ -1,56 +1,32 @@
-
-
-
-# PDFix SDK
-A multi-platform PDF Library SDK.
+# PDFix SDK example Java Maven
+Example project demonstrating the capabilities of PDFix SDK written in Java.
 
 ## Description
 
-Our PDF library analyses the key components of the PDF and make it easily available for you. With the ability to sign PDF's with both eSignatures and Digital Signatures we have your digital transactions covered.
+For more information please visit [https://pdfix.net](https://pdfix.net).
 
-We turn your simple PDF into a fully responsive document with semantic content and logical reading order built for you. You can search texts, you can save all images, you can export table values into your database or you can use exported elements for conversions – to HTML, JSON, Word, Excel, etc.
+## Quick Setup
 
-PDF form filling using AcroForm is an important part of many workflows. It allows data entry directly on print ready media with ability to import, export, submit or email data for further processing.
+Run setup_maven.sh to download and install all dependencies, then execute main class net.pdfix.App.
+```
+./setup_maven.sh
+```
 
-Try our autotag feature that recognises all important structures in your documents like tables, lists, reading order.
+## Manual Setup
 
-## Documentation
-For complete SDK documentation see the [PDFix website](https://pdfix.net).
+Download PDFix SDK from https://pdfix.net/download
 
-## Features
+__Copy class libraries__ from the `{zip}/include/java` into ${project.basedir}/src/main/resources/lib/ so that you see there
 
-* Standard PDF FeaturesHTML5 canvas-like API
-  * Document Metadata (Author, Title, etc.)
-  * Comments / Reviews
-  * Watermarks / Stamps
-  * Links / Actions
-  * Bookmarks
-  * Convert to HTML
-  * Extract, insert and update data from Form fields
-  * Printing
-  * OCR
-  * Access to low-level objects from PDF document (coming soon)
-  * Page manipulation (coming soon)
-  * Digital Signature Support
-  * eSignature Support
-  * Time Stamp Support
-* PDF Forms to HTML Form conversion
-* Logical Content Extraction
-  * PDF to HTML Conversion
-  * PDF to JSON Conversion
-  * PDF to XML Conversion
-* PDF Accessibility
-  * Add Tags to PDF
-  * Read and Edit document structure tree
-  * Edit reading order
-  * PDF to PDF/UA
+- net.pdfix.pdfixlib.jar
+- net.pdfix.pdftohtml.jar
+- net.pdfix.ocrtesseract.jar
 
-## Installation on Windows, MacOS, Linux
-Copy shared libraries from the bin folder in downloaded PDFix SDK package (https://pdfix.net/download) into the build folder same as the the executable. For 64-bit environment use files with \*64.* suffix.
-* Windows: pdfix.dll, pdf_to_html.dll, ocr_tesseract.dll
-* MacOS: libpdfix.dylib, libpdf_to_html.dylib, libocr_tesseract.dylib
-* Linux: libpdfix.so, libpdf_to_html.so, libocr_tesseract.so
+__Install native libraries__ from `{zip}/bin` on your system by copying them into `java.library.path` (e.g. /Library/Java/Extensions/)
+
+- Linux: `libpdfix.so, libpdf_to_html.so, libocr_tesseract.so`
+- MacOS: `libpdfix.dylib, libpdf_to_html.dylib, libocr_tesseract.dylib`
+- Windows: `pdfix.dll, pdf_to_html.dll, ocr_tesseract.dll`
 
 ## Have a question? Need help?
-Let us know and we’ll get back to you. Write us to support@pdfix.net or fill the
-[contact form](https://pdfix.net/support/).
+Let us know and we’ll get back to you. Write us to support@pdfix.net or fill the [contact form](https://pdfix.net/support/).
