@@ -19,10 +19,13 @@ SDK_BUILD=e5132d42
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_linux.tar.gz"
+  EXTRACT="tar -xzvf"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_macos.zip"
+  EXTRACT=unzip
 elif [[ "$OSTYPE" == "msys" ]]; then
   SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_windows.zip"
+  EXTRACT=unzip
 else
   echo "error: unknown platform"
   exit 1
@@ -35,7 +38,7 @@ rm -rf pdfix
 mkdir -p pdfix                         && \
 pushd pdfix                            && \
 curl -L -sS $SDK_URL > $SDK_ZIP && \
-unzip $SDK_ZIP                                  && \
+$EXTRACT $SDK_ZIP                                  && \
 rm $SDK_ZIP
 
 popd
