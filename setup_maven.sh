@@ -14,8 +14,8 @@ pushd "$(dirname $0)"
 # unzip file.zip                                  && \
 # rm file.zip
 
-SDK_VER=6.7.0
-SDK_BUILD=e5132d42
+SDK_VER=6.8.0
+SDK_BUILD=1e2a7fcc
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_linux.tar.gz"
