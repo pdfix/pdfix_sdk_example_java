@@ -34,11 +34,11 @@ public class AddWatermark {
             format = PdfImageFormat.kImageFormatPng;
         PdsStream imgObj = doc.CreateXObjectFromImage(imgStm, format);
         
-        watermarkParams.h_value = .5;
-        watermarkParams.v_value = .5;
+        watermarkParams.h_value = .5f;
+        watermarkParams.v_value = .5f;
         watermarkParams.percentage_vals = 1;
-        watermarkParams.scale = 1.5;
-        watermarkParams.opacity = .5;
+        watermarkParams.scale = 1.5f;
+        watermarkParams.opacity = .5f;
         watermarkParams.order_top = 1;
         
         if (!doc.AddWatermarkFromImage(watermarkParams, imgObj))

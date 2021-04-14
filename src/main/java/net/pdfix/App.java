@@ -39,7 +39,7 @@ public class App
         System.out.println("RenderPage");
         RenderPage.run(inputPath + "/test.pdf",
                 outputPath + "/RenderPage.jpg",
-                2.0);
+                2.0f);
 
         ////////////////////////////////////////////////////
         // Basic, Professional, Enterprise version
@@ -99,8 +99,7 @@ public class App
 
         System.out.println("FlattenAnnots");
         FlattenAnnots.run(inputPath + "/test.pdf",
-                outputPath + "/FlattenAnnots.pdf",
-                new PdfFlattenAnnotsParams());
+                outputPath + "/FlattenAnnots.pdf");
 
         System.out.println("GetWhitespace");
         GetWhitespace.run(inputPath + "/test.pdf");

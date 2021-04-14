@@ -13,7 +13,7 @@ public class RenderPage {
     public static void run (
       String openPath,
       String imgPath,
-      Double zoom
+      float zoom
     ) throws Exception {
         Pdfix pdfix = new Pdfix();
         if (isNull(pdfix))

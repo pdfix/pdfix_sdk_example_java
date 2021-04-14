@@ -79,8 +79,8 @@ public class ExtractImages {
               throw new Exception(pdfix.GetError());
 
             PdfRect cropBox = page.GetCropBox();
-            double pageWidth = (cropBox.right - cropBox.left);
-            double zoom = renderWidth / pageWidth;
+            float pageWidth = (cropBox.right - cropBox.left);
+            float zoom = renderWidth / pageWidth;
             PdfPageView pageView = page.AcquirePageView(zoom, 
               PdfRotate.kRotate0);
             if (pageView == null)

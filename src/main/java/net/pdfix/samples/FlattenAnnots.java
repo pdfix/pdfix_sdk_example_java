@@ -31,7 +31,7 @@ public class FlattenAnnots {
             for (int j = page.GetNumAnnots() - 1; j >= 0; j--) {
                 PdfAnnot annot = page.GetAnnot(j);
                 if (annot != null && annot.GetSubtype() != PdfAnnotSubtype.kAnnotLink) {
-                    page.RemoveAnnot(annot);
+                    page.FlattenAnnot(annot);
                 }
             }
         }
