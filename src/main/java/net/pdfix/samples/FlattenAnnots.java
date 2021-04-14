@@ -13,8 +13,7 @@ import static java.util.Objects.isNull;
 public class FlattenAnnots {
     public static void run (
       String openPath,
-      String savePath,
-      PdfFlattenAnnotsParams params
+      String savePath
     ) throws Exception {
         Pdfix pdfix = new Pdfix();
         if (isNull(pdfix))
@@ -24,9 +23,19 @@ public class FlattenAnnots {
         if (doc == null)
             throw new Exception(pdfix.GetError());
         
-        if (!doc.FlattenAnnots(params)) {
-            throw new Exception(pdfix.GetError());
+        for (int i = 0; i < doc.GetNumPages(); i++) {
+            PdfPage page = doc.AcquirePage(i);
+            if (page == null)
+                throw new Exception(pdfix.GetError());
+            
+            for (int j = page.GetNumAnnots() - 1; j >= 0; j--) {
+                PdfAnnot annot = page.GetAnnot(j);
+                if (annot != null && annot.GetSubtype() != PdfAnnotSubtype.kAnnotLink) {
+                    page.RemoveAnnot(annot);
+                }
+            }
         }
+        
         if (!doc.Save(savePath, Pdfix.kSaveFull)) {
             throw new Exception(pdfix.GetError());
         }
