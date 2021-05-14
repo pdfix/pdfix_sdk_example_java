@@ -54,8 +54,7 @@ public class App
         System.out.println("AddWatermark");
         AddWatermark.run(inputPath + "/test.pdf",
                 outputPath + "/AddWatermark.pdf",
-                inputPath + "/watermark.png",
-                new PdfWatermarkParams());
+                inputPath + "/watermark.png");
 
         System.out.println("ConvertToHtml");
         ConvertToHtml.run(inputPath + "/test.pdf",
