@@ -144,7 +144,7 @@ public class TagTableAsFigure {
         PdfDocTemplate doc_preflight = doc.GetTemplate();
         doc_preflight.SetProperty("ignore_tags", 1);
         // re-tag non-tagged page content
-        if (!page_map.AcquireElements()) {
+        if (!page_map.CreateElements()) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
         if (!page_map.AddTags(table)) {
