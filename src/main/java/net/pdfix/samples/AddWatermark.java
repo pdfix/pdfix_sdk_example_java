@@ -10,7 +10,6 @@ package net.pdfix.samples;
 import net.pdfix.pdfixlib.*;
 import static java.util.Objects.isNull;
 
-import javafx.scene.transform.MatrixType;
 
 public class AddWatermark {
     public static void run (

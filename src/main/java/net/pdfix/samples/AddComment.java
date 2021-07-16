@@ -36,7 +36,8 @@ public class AddComment {
         annotRect.right = (cropBox.right + cropBox.left) / 2.f + 10;
         annotRect.top = (cropBox.top + cropBox.bottom) / 2.f + 10;
         
-        PdfTextAnnot annot = page.AddNewTextAnnot(-1, annotRect);
+        PdfTextAnnot annot = (PdfTextAnnot)page.CreateAnnot(PdfAnnotSubtype.kAnnotText, annotRect);
+        page.AddAnnot(-1, annot);
         if (annot == null)
             throw new Exception(pdfix.GetError());
             
