@@ -18,13 +18,13 @@ public class TagTableAsFigure {
     // get the text state of the text objects inside paragraph by iterating content kid objects
     private static PdfRect GetStructElementBBox(PdsStructElement struct_elem) {
         PdfRect bbox = null;
-        for (int i = 0; i < struct_elem.GetNumKids(); i++) {
-            if (struct_elem.GetKidType(i) == PdfStructElementType.kPdsStructKidPageContent) {
+        for (int i = 0; i < struct_elem.GetNumChildren(); i++) {
+            if (struct_elem.GetChildType(i) == PdfStructElementType.kPdsStructChildPageContent) {
                 // acquire page on which the element is present
                 PdfDoc doc = struct_elem.GetStructTree().GetDoc();
-                PdfPage page = doc.AcquirePage(struct_elem.GetKidPageNumber(i));
+                PdfPage page = doc.AcquirePage(struct_elem.GetChildPageNumber(i));
                 // find text object with mcid on the page to get the text state
-                int mcid = struct_elem.GetKidMcid(i);
+                int mcid = struct_elem.GetChildMcid(i);
                 PdsContent content = page.GetContent();
                 for (int j = 0; j < content.GetNumObjects(); j++) {
                     PdsPageObject page_object = content.GetObject(j);
@@ -42,9 +42,9 @@ public class TagTableAsFigure {
                         }
                     }
                 }
-            } else if (struct_elem.GetKidType(i) == PdfStructElementType.kPdsStructKidElement) {
-                PdsObject kid_obj = struct_elem.GetKidObject(i);
-                PdsStructElement kid_elem = struct_elem.GetStructTree().AcquireStructElement(kid_obj);
+            } else if (struct_elem.GetChildType(i) == PdfStructElementType.kPdsStructChildElement) {
+                PdsObject kid_obj = struct_elem.GetChildObject(i);
+                PdsStructElement kid_elem = struct_elem.GetStructTree().GetStructElementFromObject(kid_obj);
                 PdfRect kid_bbox = GetStructElementBBox(kid_elem);
                 if (kid_bbox != null) {
                     if (bbox == null) {
@@ -64,10 +64,10 @@ public class TagTableAsFigure {
     // get reference to the first table on the page
     private static PdsStructElement GetFirstTable(PdsStructElement struct_elem) throws Exception {
         // search kid struct elements
-        for (int i = 0; i < struct_elem.GetNumKids(); i++) {
-            if (struct_elem.GetKidType(i) == PdfStructElementType.kPdsStructKidElement) {
-                PdsObject kid_obj = struct_elem.GetKidObject(i);
-                PdsStructElement kid_elem = struct_elem.GetStructTree().AcquireStructElement(kid_obj);
+        for (int i = 0; i < struct_elem.GetNumChildren(); i++) {
+            if (struct_elem.GetChildType(i) == PdfStructElementType.kPdsStructChildElement) {
+                PdsObject kid_obj = struct_elem.GetChildObject(i);
+                PdsStructElement kid_elem = struct_elem.GetStructTree().GetStructElementFromObject(kid_obj);
                 if (kid_elem == null) {
                     throw new Exception(Integer.toString(pdfix.GetErrorType()));
                 }
@@ -77,25 +77,21 @@ public class TagTableAsFigure {
                 }
                 PdsStructElement table = GetFirstTable(kid_elem);
                 if (table != null) {
-                    kid_elem.Release();
                     return table;
                 }
-                kid_elem.Release();
             }
         }
         return null;
     }
 
     private static PdsStructElement GetFirstTable(PdsStructTree struct_tree) throws Exception {
-        for (int i = 0; i < struct_tree.GetNumKids(); i++) {
-            PdsObject kid_obj = struct_tree.GetKidObject(i);
-            PdsStructElement kid_elem = struct_tree.AcquireStructElement(kid_obj);
+        for (int i = 0; i < struct_tree.GetNumChildren(); i++) {
+            PdsObject kid_obj = struct_tree.GetChildObject(i);
+            PdsStructElement kid_elem = struct_tree.GetStructElementFromObject(kid_obj);
             PdsStructElement paragraph = GetFirstTable(kid_elem);
             if (paragraph != null) {
-                kid_elem.Release();
                 return paragraph;
             }
-            kid_elem.Release();
         }
         return null;
     }
@@ -131,8 +127,8 @@ public class TagTableAsFigure {
         }
         PdfRect bbox = GetStructElementBBox(table);
         // remove all items from the table to make it untagged cotnent
-        for (int i = table.GetNumKids() - 1; i >= 0; i--) {
-            table.RemoveKid(i);
+        for (int i = table.GetNumChildren() - 1; i >= 0; i--) {
+            table.RemoveChild(i);
         }
         // tag page
         PdfPage page = doc.AcquirePage(0);

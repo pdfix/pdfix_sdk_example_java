@@ -23,7 +23,6 @@ public class DocumentMetadata {
         if (doc == null)
             throw new Exception(pdfix.GetError());
         
-        String title = doc.GetInfo("Title");
         doc.GetInfo("Title");
         doc.SetInfo("Title", "My next presenttion");
         

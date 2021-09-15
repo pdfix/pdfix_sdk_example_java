@@ -32,8 +32,6 @@ public class AddWatermark {
         PdfImageFormat format = PdfImageFormat.kImageFormatJpg;
         if (imgPath.substring(imgPath.lastIndexOf(".")+1) == "png")
             format = PdfImageFormat.kImageFormatPng;
-        PdsStream imgObj = doc.CreateXObjectFromImage(imgStm, format);
-        
 
         PdsStream image_obj = doc.CreateXObjectFromImage(imgStm, format);
         if (image_obj == null)

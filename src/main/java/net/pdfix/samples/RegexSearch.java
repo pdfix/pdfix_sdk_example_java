@@ -45,8 +45,8 @@ public class RegexSearch {
                 while (startPos < (int)text.length()) {
                     if (regex.Search(text, startPos)) {
                         int pos = regex.GetPosition();
-                        int len = regex.GetLength();
-                        String match = text.substring((startPos + pos), len);
+                        // int len = regex.GetLength();
+                        // String match = text.substring((startPos + pos), len);
                         startPos += pos + 1;
                     }
                     else 

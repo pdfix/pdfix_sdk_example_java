@@ -49,9 +49,9 @@ public class RegexSetPattern {
         for (int i = 0; i < 10; i = i + 1) {
             regex.SetPattern(pattern[i]);
             if (regex.Search(text, i)) {
-                int pos = regex.GetPosition();
-                int len = regex.GetLength();
-                String matchText = regex.GetText();
+                // int pos = regex.GetPosition();
+                // int len = regex.GetLength();
+                // String matchText = regex.GetText();
             }
         }
         regex.Destroy();

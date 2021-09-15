@@ -25,7 +25,6 @@ public class SetFieldFlags {
         int i;
         
         for (i=0; i < doc.GetNumFormFields(); i = i + 1) {
-            String name, value;
             PdfFormField field = doc.GetFormField(i);
             if (!field.SetFlags(i)) {
                 throw new Exception(pdfix.GetError());

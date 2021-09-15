@@ -31,6 +31,7 @@ public class ThreadSafePdfix {
                     System.out.println(operation + " : executing operation...");
                     PdfPage page = doc.AcquirePage(0);
                     PdePageMap pageMap = page.AcquirePageMap();
+                    pageMap.CreateElements();
                     // some processing
                     Thread.sleep(1000);
                     page.Release();

@@ -35,7 +35,7 @@ public class GetWhitespace {
         whitespaceParams.width = 100;
         // set watermark height in user space coordinates
         whitespaceParams.height = 50;
-        PdfRect bbox = pageMap.GetWhitespace(whitespaceParams, 0);
+        // PdfRect bbox = pageMap.GetWhitespace(whitespaceParams, 0);
         
         // use the bbox to place watermark into it - AddWatermark example
         // ...

@@ -23,8 +23,6 @@ public class ExtractImages {
         PdfElementType elemType = element.GetType();
 
         if (elemType == PdfElementType.kPdeImage) {
-            PdeImage image = (PdeImage)element;
-
             PdfRect elemRect = element.GetBBox();
             PdfDevRect elemDevRect = pageView.RectToDevice(elemRect);
             int elem_width = elemDevRect.right - elemDevRect.left;
