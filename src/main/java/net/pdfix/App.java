@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import net.pdfix.pdfixlib.*;
-import net.pdfix.pdftohtml.*;
 
 public class App 
 {
@@ -147,9 +146,9 @@ public class App
         TagsEditStructTree.run(inputPath + "/test.pdf",
                 outputPath + "/TagsEditStructTree.pdf");
 
-        System.out.println("TagTableAsFigure");
-        TagTableAsFigure.Run(inputPath + "/test.pdf",
-                outputPath + "/TagTableAsFigure.pdf");
+        // System.out.println("TagTableAsFigure");
+        // TagTableAsFigure.Run(inputPath + "/test.pdf",
+        //         outputPath + "/TagTableAsFigure.pdf");
 
         System.out.println("SUCCESS");        
     }

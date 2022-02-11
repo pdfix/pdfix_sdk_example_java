@@ -34,13 +34,6 @@
     </dependency>    
     <dependency>
         <groupId>net.pdfix</groupId>
-        <artifactId>pdftohtml</artifactId>
-        <version>1.0</version>
-        <scope>system</scope>
-        <systemPath>${project.basedir}/pdfix/include/java/net.pdfix.pdftohtml.jar</systemPath>
-    </dependency>   
-    <dependency>
-        <groupId>net.pdfix</groupId>
         <artifactId>ocrtesseract</artifactId>
         <version>1.0</version>
         <scope>system</scope>

@@ -9,7 +9,6 @@ package net.pdfix.samples;
 
 
 import net.pdfix.pdfixlib.*;
-import net.pdfix.pdftohtml.*;
 import static java.util.Objects.isNull;
 
 public class ConvertToHtmlByPages {  
@@ -27,67 +26,58 @@ public class ConvertToHtmlByPages {
         if (isNull(pdfix))
           throw new Exception("Pdfix initialization fail");
 
-        PdfToHtml pdfToHtml = new PdfToHtml();
-        if (isNull(pdfToHtml))
-          throw new Exception("PdfToHtml initialization fail");
-
-        System.out.println( pdfToHtml.GetVersionMajor() + "." +  
-          pdfToHtml.GetVersionMinor() + "." + pdfToHtml.GetVersionPatch());
-
-        if (!pdfToHtml.Initialize(pdfix))
-          throw new Exception(pdfix.GetError());
-
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
           throw new Exception(pdfix.GetError());
-    
-        PdfHtmlDoc htmlDoc = pdfToHtml.OpenHtmlDoc(doc);
-        if (htmlDoc == null)
+
+        PdfHtmlConversion htmlConv = doc.CreateHtmlConversion();
+        if (htmlConv == null)
           throw new Exception(pdfix.GetError());
-        
-        // prepare HTML params for conversion
-        PdfHtmlParams htmlParams = new PdfHtmlParams();
-        htmlParams.flags |= PdfToHtml.kHtmlExportJavaScripts;
-        htmlParams.flags |= PdfToHtml.kHtmlExportFonts;
-        htmlParams.flags |= PdfToHtml.kHtmlRetainFontSize;
-        htmlParams.flags |= PdfToHtml.kHtmlRetainTextColor;
-        htmlParams.flags |= PdfToHtml.kHtmlNoExternalCSS | PdfToHtml.kHtmlNoExternalJS | 
-          PdfToHtml.kHtmlNoExternalIMG | PdfToHtml.kHtmlNoExternalFONT;
-        
+                
         // save the document JavaScript 
         PsMemoryStream stmJS = pdfix.CreateMemStream();
-        pdfToHtml.SaveJavaScript(stmJS);
+        htmlConv.SaveJavaScript(stmJS);
         // process JS stream 
         dumpStream(stmJS);
         stmJS.Destroy();
         
         // save document CSS
         PsMemoryStream stmCSS = pdfix.CreateMemStream();
-        pdfToHtml.SaveCSS(stmCSS);
+        htmlConv.SaveCSS(stmCSS);
         // process CSS stream
         dumpStream(stmCSS);
         stmCSS.Destroy();
-                
-        // save document HTML (does not contain pages)
+
+        // prepare HTML params for conversion
+        PdfHtmlParams htmlParams = new PdfHtmlParams();
+        htmlParams.flags |= Pdfix.kHtmlExportJavaScripts;
+        htmlParams.flags |= Pdfix.kHtmlExportFonts;
+        htmlParams.flags |= Pdfix.kHtmlRetainFontSize;
+        htmlParams.flags |= Pdfix.kHtmlRetainTextColor;
+        htmlParams.flags |= Pdfix.kHtmlNoExternalCSS | Pdfix.kHtmlNoExternalJS | Pdfix.kHtmlNoExternalIMG
+            | Pdfix.kHtmlNoExternalFONT;
+
+        if (!htmlConv.SetParams(htmlParams))
+          throw new Exception(pdfix.GetError());
+
+        // create memory stream where document will be written
         PsMemoryStream stmDoc = pdfix.CreateMemStream();
-        htmlDoc.SaveDocHtml(stmDoc, htmlParams);
+
+        // convert only some pages
+        for (int i = 0; i < doc.GetNumPages(); i++) {
+          if (!htmlConv.AddPage(i))
+            throw new Exception(pdfix.GetError());
+        }
+
+        if (!htmlConv.SaveToStream(stmDoc))
+          throw new Exception(pdfix.GetError());
+
         // process HTML Doc stream
         dumpStream(stmDoc);
         stmDoc.Destroy();
         
-        // save page HTML
-        for (int i = 0; i < doc.GetNumPages(); i++) {
-            PsMemoryStream stmPage = pdfix.CreateMemStream();
-            htmlDoc.SavePageHtml(stmPage, htmlParams, i);
-            // process HTML Page stream
-            dumpStream(stmPage);
-            stmPage.Destroy();
-        }
-        
-        
-        htmlDoc.Close();    
+        htmlConv.Destroy();
         doc.Close();
-        pdfToHtml.Destroy();
         pdfix.Destroy();
       }
 }

@@ -33,7 +33,6 @@ public class Initialization {
 
         // load pdfix libraries
         System.load(libPath + "/" + getLibraryName("pdfix"));
-        System.load(libPath + "/" + getLibraryName("pdf_to_html"));
         System.load(libPath + "/" + getLibraryName("ocr_tesseract"));
 
         Pdfix pdfix = new Pdfix();        
