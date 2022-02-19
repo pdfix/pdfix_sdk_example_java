@@ -143,7 +143,7 @@ public class TagTableAsFigure {
         if (!page_map.CreateElements()) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
-        if (!page_map.AddTags(table)) {
+        if (!page_map.AddTags(table, false)) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
         // udpate the table element type
