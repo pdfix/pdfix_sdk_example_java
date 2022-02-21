@@ -7,7 +7,7 @@
   <groupId>net.pdfix</groupId>
   <artifactId>net.pdfix.App</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
+  <version>6.17.0</version>
 
   <name>PDFix SDK Java Example</name>
   <url>https://pdfix.net</url>
@@ -26,23 +26,18 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>net.pdfix</groupId>
-        <artifactId>pdfixlib</artifactId>
-        <version>1.0</version>
-        <scope>system</scope>
-        <systemPath>${project.basedir}/pdfix/include/java/net.pdfix.pdfixlib.jar</systemPath>
-    </dependency>    
-    <dependency>
-        <groupId>net.pdfix</groupId>
-        <artifactId>ocrtesseract</artifactId>
-        <version>1.0</version>
-        <scope>system</scope>
-        <systemPath>${project.basedir}/pdfix/include/java/net.pdfix.ocrtesseract.jar</systemPath>
-    </dependency>           
+      <groupId>net.pdfix</groupId>
+      <artifactId>net.pdfix.pdfixlib</artifactId>
+      <version>${project.version}</version>
+  </dependency>    
+  <dependency>
+      <groupId>net.pdfix</groupId>
+      <artifactId>net.pdfix.ocrtesseract</artifactId>
+      <version>${project.version}</version>
+  </dependency>           
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <!-- Build an executable JAR -->
@@ -56,30 +51,91 @@
               </manifest>
             </archive>
           </configuration>
-        </plugin>    
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-antrun-plugin</artifactId>
-    <executions>
-        <execution>
-            <id>download-files</id>
-            <phase>prepare-package</phase>
-            <goals>
-                <goal>run</goal>
-            </goals>
-            <configuration>
-                <target>
-                    <!-- download file -->
-                    <get src="https://github.com/pdfix/pdfix_sdk_builds/releases/download/6.7.0/pdfix_sdk_6.7.0_e5132d42_macos.zip"
-                         dest="${project.basedir}/pdfix/"
-                         verbose="true"
-                         usetimestamp="true"/>
-                 </target>
-             </configuration>
-         </execution>
-     </executions>
- </plugin>        
-  
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>2.4.3</version>
+          <executions>
+              <execution>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>shade</goal>
+                  </goals>
+              </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.7</version>
+          <executions>
+            <execution>
+                <id>copy-resources</id>
+                <phase>clean</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>./target/resources</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>./resources/</directory>
+                            <filtering>false</filtering>
+                        </resource>
+                    </resources>
+                    <delimiters>
+                        <delimiter>@{*}</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.1</version>
+          <executions>
+              <execution>
+                  <id>install-external-jar-pdfix</id>
+                  <phase>clean</phase>
+                  <configuration>
+                      <repositoryLayout>default</repositoryLayout>
+                      <groupId>net.pdfix</groupId>
+                      <artifactId>net.pdfix.pdfixlib</artifactId>
+                      <version>${project.version}</version>
+                      <file>${pom.basedir}/pdfix/include/java/net.pdfix.pdfixlib-${project.version}.jar</file>
+                      <packaging>jar</packaging>
+                      <generatePom>true</generatePom>
+                  </configuration>
+                  <goals>
+                      <goal>install-file</goal>
+                  </goals>
+              </execution>
+
+              <execution>
+                <id>install-external-jar-ocrtesseract</id>
+                <phase>clean</phase>
+                <configuration>
+                    <repositoryLayout>default</repositoryLayout>
+                    <groupId>net.pdfix</groupId>
+                    <artifactId>net.pdfix.ocrtesseract</artifactId>
+                    <version>${project.version}</version>
+                    <file>${pom.basedir}/pdfix/include/java/net.pdfix.ocrtesseract-${project.version}.jar</file>
+                    <packaging>jar</packaging>
+                    <generatePom>true</generatePom>
+                </configuration>
+                <goals>
+                    <goal>install-file</goal>
+                </goals>
+            </execution>
+
+          </executions>
+      </plugin>
+
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -87,24 +143,12 @@
         </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.5.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -120,6 +164,5 @@
           <version>3.0.0</version>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>

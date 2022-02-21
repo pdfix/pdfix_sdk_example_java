@@ -8,3 +8,5 @@
 /output
 /pdfix
 /src/main/resources/lib
+dependency-reduced-pom.xml
+pom.xml.versionsBackup

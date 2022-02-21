@@ -12,15 +12,21 @@ Run setup_maven.sh to download and install all dependencies, then execute main c
 ./setup_maven.sh
 ```
 
+## Run the sample
+
+Run example_run.sh or use command below with absolute path to pdfix bin directory
+```
+java -jar net.pdfix.App-6.17.1.jar --pdfix-bin <your_path>/pdfix/bin
+```
+
 ## Manual Setup
 
 Download PDFix SDK from https://pdfix.net/download
 
-__Copy class libraries__ from the `{zip}/include/java` into ${project.basedir}/src/main/resources/lib/ so that you see there
+__Copy class libraries__ from the `{zip}/include/java` into ${project.basedir}/pdfix/include/java/ so that you see there
 
-- net.pdfix.pdfixlib.jar
-- net.pdfix.pdftohtml.jar
-- net.pdfix.ocrtesseract.jar
+- net.pdfix.pdfixlib-${sdk_verison_num}.jar
+- net.pdfix.ocrtesseract-${sdk_verison_num}.jar
 
 __Install native libraries__ from `{zip}/bin` on your system by copying them into `java.library.path` (e.g. /Library/Java/Extensions/)
 

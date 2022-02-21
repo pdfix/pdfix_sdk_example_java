@@ -43,8 +43,8 @@ rm $SDK_ZIP
 
 popd
 
-# copy jar files
-cp pdfix/include/java/* src/main/resources/lib
+#update version number in maven project pom.xml
+mvn -f "pom.xml" versions:set -DnewVersion=$SDK_VER
 
 exit 0
 #wget $SDK_URL
