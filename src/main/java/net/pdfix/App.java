@@ -146,6 +146,10 @@ public class App
         TagsEditStructTree.run(inputPath + "/test.pdf",
                 outputPath + "/TagsEditStructTree.pdf");
 
+        System.out.println("TagsEditStructTree");
+        TagsReadStructureTree.run(inputPath + "/test.pdf",
+                outputPath + "/TagsEditStructTree.pdf");
+        
         // System.out.println("TagTableAsFigure");
         // TagTableAsFigure.Run(inputPath + "/test.pdf",
         //         outputPath + "/TagTableAsFigure.pdf");
