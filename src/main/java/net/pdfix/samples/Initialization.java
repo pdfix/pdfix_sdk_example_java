@@ -40,7 +40,14 @@ public class Initialization {
             throw new Exception("Pdfix initialization fail");
 
         System.out.println( "PDFix SDK " + pdfix.GetVersionMajor() + "." +
-            pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
+                pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
+            
+        // Authorization using a name and license key
+        String licenseName = "";
+        String licenseKey = "";
+        if (!pdfix.GetAccountAuthorization().Authorize(licenseName, licenseKey)) {
+            // library not authorized
+        }
 
         // your code goes here
 
