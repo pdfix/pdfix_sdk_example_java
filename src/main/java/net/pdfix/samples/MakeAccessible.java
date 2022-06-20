@@ -38,16 +38,8 @@ public class MakeAccessible {
                 stm.Destroy();
             }
         }
-        // set document language
-        if (!language.isEmpty())
-            doc.SetLang(language);
-        
-        // set document title
-        if (!title.isEmpty())
-            doc.SetInfo("Title", title);
-        
         // convert to PDF/UA
-        if (!doc.MakeAccessible(new PdfAccessibleParams()))
+        if (!doc.MakeAccessible(new PdfAccessibleParams(), title, language))
            throw new Exception(pdfix.GetError());
         
         if (!doc.Save(savePath, Pdfix.kSaveFull))

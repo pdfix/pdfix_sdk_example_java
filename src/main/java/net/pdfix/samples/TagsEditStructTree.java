@@ -29,7 +29,7 @@ public class TagsEditStructTree {
             throw new Exception(pdfix.GetError());
         }
 
-        if (!doc.AddTags()) {
+        if (!doc.AddTags(new PdfTagsParams())) {
             throw new Exception(pdfix.GetError());
         }
 

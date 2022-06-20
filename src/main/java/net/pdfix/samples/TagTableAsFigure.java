@@ -112,8 +112,8 @@ public class TagTableAsFigure {
         if (!doc.RemoveTags()) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
-        // autotag document first
-        if (!doc.AddTags()) {
+        // autotag document first        
+        if (!doc.AddTags(new PdfTagsParams())) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
         // get the struct tree
@@ -143,7 +143,7 @@ public class TagTableAsFigure {
         if (!page_map.CreateElements()) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
-        if (!page_map.AddTags(table)) {
+        if (!page_map.AddTags(table, false, new PdfTagsParams())) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
         }
         // udpate the table element type

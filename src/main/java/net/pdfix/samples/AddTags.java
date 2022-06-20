@@ -34,7 +34,7 @@ public class AddTags {
             stm.Destroy();
         }
 
-        if (!doc.AddTags())
+        if (!doc.AddTags(new PdfTagsParams()))
             throw new Exception(pdfix.GetError());
 
         if (!doc.Save(savePath, Pdfix.kSaveFull | Pdfix.kSaveCompressedStructureOnly))

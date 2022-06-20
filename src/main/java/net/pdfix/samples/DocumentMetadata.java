@@ -26,7 +26,7 @@ public class DocumentMetadata {
         doc.GetInfo("Title");
         doc.SetInfo("Title", "My next presenttion");
         
-        PsMetadata metadata = doc.GetMetadata();
+        PdsStream metadata = doc.GetMetadata();
         if (metadata == null) {
             throw new Exception(pdfix.GetError());
         }

@@ -47,17 +47,13 @@ public class ConvertToXml {
         Element root = xml.createElement("Document");
         
         // save metadata
-        PsMetadata meta = doc.GetMetadata();
-        PsStream metaStm = pdfix.CreateMemStream();        
-        meta.SaveToStream(metaStm);
+        PdsStream metaStm = doc.GetMetadata();
         byte[] metadata = new byte[metaStm.GetSize()];
         metaStm.Read(0, metadata);
         
         Element metaNode = xml.createElement("metadata");       
         metaNode.setTextContent(metadata.toString());
         root.appendChild(metaNode);
-        metaStm.Destroy();
-        
         
         // save content by pages
         for (int i = 0; i < doc.GetNumPages(); i++) {
