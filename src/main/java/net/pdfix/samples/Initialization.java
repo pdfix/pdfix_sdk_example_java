@@ -41,20 +41,9 @@ public class Initialization {
 
         System.out.println( "PDFix SDK " + pdfix.GetVersionMajor() + "." +
                 pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
-
-        // Developer license authorization
-        if (!pdfix.IsAuthorizaed()) {
-            String devLicenseName = "";
-            String devLicenseKey = "";
-            if (!devLicenseName.isEmpty() && !devLicenseKey.isEmpty()) {
-                if (!pdfix.GetAccountAuthorization().Authorize(devLicenseName, devLicenseKey)) {                
-                    throw new Exception("Pdfix authorization fail");
-                }
-            }
-        }
             
-        // Production license authorization
-        if (!pdfix.IsAuthorizaed()) {
+        // license authorization
+        if (!pdfix.GetAuthorization().IsAuthorized()) {
             String licenseName = "";
             String licenseKey = "";
             if (licenseName.isEmpty()) {
