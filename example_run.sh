@@ -1,1 +1,1 @@
-java -jar $(pwd)/target/net.pdfix.App-6.18.0.jar --pdfix-bin $(pwd)/pdfix/bin
+java -jar $(pwd)/target/net.pdfix.App-6.19.0.jar --pdfix-bin $(pwd)/pdfix/bin
