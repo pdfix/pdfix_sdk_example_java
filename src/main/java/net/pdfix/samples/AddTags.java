@@ -23,7 +23,7 @@ public class AddTags {
         if (doc == null)
             throw new Exception(pdfix.GetError());
 
-        // customize auto-tagging 
+        // customize auto-tagging by loading a template configuration JSON
         PsFileStream stm = pdfix.CreateFileStream(configPath, PsFileMode.kPsReadOnly);
         if (stm != null) {
             PdfDocTemplate doc_preflight = doc.GetTemplate();
@@ -32,6 +32,16 @@ public class AddTags {
             if (!doc_preflight.LoadFromStream(stm, PsDataFormat.kDataFormatJson))
                 throw new Exception(pdfix.GetError());
             stm.Destroy();
+        }
+        else {
+            // customize auto-tagging by running preflight
+            PdfDocTemplate doc_preflight = doc.GetTemplate();
+            for (int i = 0; i < doc.GetNumPages(); i++) {
+                if (!doc_preflight.AddPage(i))
+                    throw new Exception(pdfix.GetError());
+            }
+            if (!doc_preflight.Update())
+                throw new Exception(pdfix.GetError());
         }
 
         if (!doc.AddTags(new PdfTagsParams()))
