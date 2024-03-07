@@ -14,17 +14,17 @@ pushd "$(dirname $0)"
 # unzip file.zip                                  && \
 # rm file.zip
 
-SDK_VER=6.20.0
-SDK_BUILD=85fec3d0
+SDK_VER=7.2.0
+SDK_BUILD=1081_4fd73280
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_linux.tar.gz"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"."$SDK_BUILD"_linux.tar.gz"
   EXTRACT="tar -xzvf"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_macos.zip"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"."$SDK_BUILD"_macos.zip"
   EXTRACT=unzip
 elif [[ "$OSTYPE" == "msys" ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_BUILD"_windows.zip"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"."$SDK_BUILD"_windows.zip"
   EXTRACT=unzip
 else
   echo "error: unknown platform"

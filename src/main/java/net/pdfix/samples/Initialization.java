@@ -7,7 +7,6 @@
 package net.pdfix.samples;
 
 import net.pdfix.pdfixlib.Pdfix;
-import static java.util.Objects.isNull;
 
 public class Initialization {
 
@@ -37,9 +36,6 @@ public class Initialization {
         System.load(libPath + "/" + getLibraryName("ocr_tesseract"));
 
         Pdfix pdfix = new Pdfix();
-        if (isNull(pdfix))
-            throw new Exception("Pdfix initialization fail");
-
         System.out.println("PDFix SDK " + pdfix.GetVersionMajor() + "." +
                 pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
 

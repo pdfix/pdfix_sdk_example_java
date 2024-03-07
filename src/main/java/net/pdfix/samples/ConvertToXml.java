@@ -11,7 +11,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import net.pdfix.pdfixlib.*;
-import static java.util.Objects.isNull;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -34,9 +33,6 @@ public class ConvertToXml {
       String savePath
     ) throws Exception {      
         Pdfix pdfix = new Pdfix();
-        if (isNull(pdfix))
-            throw new Exception("Pdfix initialization fail");
-
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());

@@ -8,7 +8,6 @@
 package net.pdfix.samples;
 
 import net.pdfix.pdfixlib.*;
-import static java.util.Objects.isNull;
 
 public class TagTableAsFigure {
 
@@ -101,9 +100,6 @@ public class TagTableAsFigure {
             String savePath // dest PDF document
     ) throws Exception {
         pdfix = new Pdfix();
-        if (isNull(pdfix)) 
-            throw new Exception("Pdfix initialization fail");
-        
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));

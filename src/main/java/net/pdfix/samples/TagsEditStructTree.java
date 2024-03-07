@@ -8,7 +8,6 @@
 package net.pdfix.samples;
 
 import net.pdfix.pdfixlib.*;
-import static java.util.Objects.isNull;
 
 public class TagsEditStructTree {
 
@@ -17,9 +16,6 @@ public class TagsEditStructTree {
             String savePath
     ) throws Exception {
         Pdfix pdfix = new Pdfix();
-        if (isNull(pdfix)) 
-            throw new Exception("Pdfix initialization fail");        
-
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null) {
             throw new Exception(pdfix.GetError());

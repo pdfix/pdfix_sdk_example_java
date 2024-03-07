@@ -8,7 +8,6 @@ package net.pdfix.samples;
 
 import java.util.concurrent.Semaphore;
 import net.pdfix.pdfixlib.*;
-import static java.util.Objects.isNull;
 
 public class ThreadSafePdfix {
     static Semaphore semaphore = new Semaphore(1);
@@ -54,9 +53,6 @@ public class ThreadSafePdfix {
         System.out.println("ThreadSafePdfix");
         
         Pdfix pdfix = new Pdfix();
-        if (isNull(pdfix))
-            throw new Exception("Pdfix initialization fail");
-
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());

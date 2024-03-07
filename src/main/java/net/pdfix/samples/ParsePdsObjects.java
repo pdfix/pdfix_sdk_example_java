@@ -8,7 +8,6 @@
 package net.pdfix.samples;
 
 import net.pdfix.pdfixlib.*;
-import static java.util.Objects.isNull;
 
 public class ParsePdsObjects {
     public static void parseObject(PdsObject object) {
@@ -18,9 +17,6 @@ public class ParsePdsObjects {
       String openPath
     ) throws Exception {
         Pdfix pdfix = new Pdfix();
-        if (isNull(pdfix))
-            throw new Exception("Pdfix initialization fail");
-
         PdfDoc doc = pdfix.OpenDoc(openPath, "");
         if (doc == null)
             throw new Exception(pdfix.GetError());
