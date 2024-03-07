@@ -16,7 +16,7 @@ Run setup_maven.sh to download and install all dependencies, then execute main c
 
 Run example_run.sh or use command below with absolute path to pdfix bin directory
 ```
-java -jar net.pdfix.App-6.17.1.jar --pdfix-bin <your_path>/pdfix/bin
+java -jar net.pdfix.App-7.0.0.jar --pdfix-bin <your_path>/pdfix/bin
 ```
 
 ## Manual Setup
