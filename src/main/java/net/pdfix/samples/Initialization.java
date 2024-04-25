@@ -6,9 +6,15 @@
 // Example how to initialize PDFix SDK for Java.
 package net.pdfix.samples;
 
-import net.pdfix.pdfixlib.Pdfix;
+import net.pdfix.pdfixlib.*;
 
 public class Initialization {
+    private static void dumpStream(PsStream stm) {
+        byte[] bytes = new byte[stm.GetSize()];
+        stm.Read(0, bytes);
+        String str = new String(bytes);
+        System.out.print(str);
+    }
 
     private static String getLibraryName(String name) throws Exception {
 
@@ -32,6 +38,8 @@ public class Initialization {
     public static void run(String libPath) throws Exception {
 
         // load pdfix libraries
+        System.out.println("Load PDFix dynamic libraries:");
+
         System.load(libPath + "/" + getLibraryName("pdf"));
         System.load(libPath + "/" + getLibraryName("ocr_tesseract"));
 
@@ -40,6 +48,7 @@ public class Initialization {
                 pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
 
         // license authorization
+        System.out.print("License Authorization:");
         if (!pdfix.GetAuthorization().IsAuthorized()) {
             String licenseName = "";
             String licenseKey = "";
@@ -55,6 +64,15 @@ public class Initialization {
                 }
             }
         }
+
+        // read license status
+        System.out.println("License Status:");
+        PsStream memStm = pdfix.CreateMemStream();
+        if (!pdfix.GetAuthorization().SaveToStream(memStm, PsDataFormat.kDataFormatJson)) {
+            throw new Exception(pdfix.GetError());            
+        }
+        dumpStream(memStm);
+
         // your code goes here
 
         pdfix.Destroy();
