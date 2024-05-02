@@ -16,7 +16,7 @@ pushd "$(dirname $0)"
 
 SDK_VER=8.0.0
 SDK_BUILD=1173
-SDK_HASH=af667112
+SDK_HASH=ede0c5cf
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
   SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_linux.tar.gz"

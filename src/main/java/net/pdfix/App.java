@@ -105,9 +105,7 @@ public class App
         System.out.println("MakeAccessible");
         MakeAccessible.run(inputPath + "/test.pdf",
                 outputPath + "/MakeAccessible.pdf",
-                "en-us",
-                "",
-                configPath);
+                basePath + "/resources/make-accessible.json");
 
 //            System.out.println("OcrWithTesseract");
 //            OcrWithTesseract.run(inputPath + "/smoke_test/AutoTag_Sample.pdf",
