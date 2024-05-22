@@ -1,1 +1,1 @@
-java -jar $(pwd)/target/net.pdfix.App-8.0.0.jar --pdfix-bin $(pwd)/pdfix/bin
+java -jar $(pwd)/target/net.pdfix.App-8.0.1.jar --pdfix-bin $(pwd)/pdfix/bin
