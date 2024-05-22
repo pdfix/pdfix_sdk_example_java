@@ -22,7 +22,7 @@ public class App {
         public static void main(String[] args) throws Exception {
 
                 String basePath = System.getProperty("user.dir"); // path to current folder
-                String pdfixPath = basePath + "/pdfix/bin"; // path to pdfix bin folder
+                String pdfixPath = basePath + "/pdfix/bin"; // default path to pdfix bin folder
 
                 for (int i = 0; i < args.length; i++) {
                         if (args[i].equals("--pdfix-bin") && i + 1 < args.length)

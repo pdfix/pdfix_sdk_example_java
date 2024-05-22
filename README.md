@@ -12,12 +12,23 @@ Run setup_maven.sh to download and install all dependencies, then execute main c
 ./setup_maven.sh
 ```
 
+## Compile App
+
+```
+mvn compile -f pom.xml
+mvn package -f pom.xml
+```
+
 ## Run the sample
 
-Run example_run.sh or use command below with absolute path to pdfix bin directory
+Make sure to copy dependencies from `{zip}/include/java` to `lib/` folder next to net.pdfix.App-8.0.1.jar.
+
+Run example_run.sh or use command:
 ```
-java -jar net.pdfix.App-8.0.1.jar --pdfix-bin <your_path>/pdfix/bin
+java -jar target/net.pdfix.App-8.0.1.jar --pdfix-bin <your_path>/pdfix/bin --test <test_name>
 ```
+- `--pdfix-bin` - [optional] path to pdfix bin folder if stored on custom location
+- `--test` -  [optional] the name of the test to run. For example AddTags, AddWatermark. All tests are executed if empty
 
 ## Manual Setup
 
