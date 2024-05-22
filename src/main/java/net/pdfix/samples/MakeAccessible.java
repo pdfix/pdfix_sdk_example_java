@@ -31,11 +31,12 @@ public class MakeAccessible {
                 throw new Exception(pdfix.GetError());
             }
         } else {
-            PsFileStream stm = pdfix.CreateFileStream(commandPath, PsFileMode.kPsReadOnly);
-            if (stm == null) {
-                throw new Exception(pdfix.GetError());
-            }
+            cmdStm = pdfix.CreateFileStream(commandPath, PsFileMode.kPsReadOnly);
         }
+        if (cmdStm == null) {
+            throw new Exception(pdfix.GetError());
+        }
+        
         if (!command.LoadParamsFromStream(cmdStm, PsDataFormat.kDataFormatJson)) {
             throw new Exception(pdfix.GetError());
         }
