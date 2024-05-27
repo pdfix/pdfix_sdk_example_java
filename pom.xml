@@ -28,13 +28,17 @@
     <dependency>
       <groupId>net.pdfix</groupId>
       <artifactId>net.pdfix.pdfixlib</artifactId>
+      <scope>runtime</scope>
       <version>${project.version}</version>
+      <!-- <systemPath>${basedir}/pdfix/include/java/net.pdfix.pdfixlib-8.0.1.jar</systemPath> -->
       <!-- <scope>compiler</scope> -->
   </dependency>    
   <dependency>
       <groupId>net.pdfix</groupId>
       <artifactId>net.pdfix.ocrtesseract</artifactId>
+      <scope>provided</scope>
       <version>${project.version}</version>
+      <!-- <systemPath>${basedir}/pdfix/include/java/net.pdfix.ocrtesseract-8.0.1.jar</systemPath> -->
   </dependency>           
   </dependencies>
 
@@ -108,7 +112,7 @@
                       <groupId>net.pdfix</groupId>
                       <artifactId>net.pdfix.pdfixlib</artifactId>
                       <version>${project.version}</version>
-                      <file>${pom.basedir}/pdfix/include/java/net.pdfix.pdfixlib-${project.version}.jar</file>
+                      <file>${basedir}/pdfix/include/java/net.pdfix.pdfixlib-${project.version}.jar</file>
                       <packaging>jar</packaging>
                       <generatePom>true</generatePom>
                   </configuration>
@@ -125,7 +129,7 @@
                     <groupId>net.pdfix</groupId>
                     <artifactId>net.pdfix.ocrtesseract</artifactId>
                     <version>${project.version}</version>
-                    <file>${pom.basedir}/pdfix/include/java/net.pdfix.ocrtesseract-${project.version}.jar</file>
+                    <file>${pom.basedir}/lib/net.pdfix.ocrtesseract-${project.version}.jar</file>
                     <packaging>jar</packaging>
                     <generatePom>true</generatePom>
                 </configuration>
