@@ -74,12 +74,6 @@ public class App {
                                         inputPath + "/watermark.png");
                 }
 
-                if (runTest("ConvertToHtml")) {
-                        ConvertToHtml.run(inputPath + "/test.pdf",
-                                        outputPath + "/index.html", configPath,
-                                        new PdfHtmlParams());
-                }
-
                 if (runTest("ConvertToHtmlByPages")) {
                         ConvertToHtmlByPages.run(inputPath + "/test.pdf");
                 }
