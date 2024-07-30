@@ -23,12 +23,13 @@ public class Initialization {
             if ("aarch64".equals(System.getProperty("os.arch")))
                 return "/arm64/lib" + name + ".dylib";
             else
-                return "/x64/lib" + name + ".dylib";
+                return "/x86_64/lib" + name + ".dylib";
         } else if (os.indexOf("win") >= 0) {
             if ("64".equals(System.getProperty("sun.arch.data.model")))
-                return "/x64/" + name + ".dll";
+                return "/x86_64/" + name + ".dll";
             else
-                return "/x86/" + name + ".dll";
+                throw new Exception("Missing platform support");
+                // return "/x86/" + name + ".dll";
         } else if (os.indexOf("nux") >= 0) {
             return "/x64/lib" + name + ".so";
         }
@@ -41,7 +42,6 @@ public class Initialization {
         System.out.println("Load PDFix dynamic libraries:");
 
         System.load(libPath + "/" + getLibraryName("pdf"));
-        System.load(libPath + "/" + getLibraryName("ocr_tesseract"));
 
         Pdfix pdfix = new Pdfix();
         System.out.println("PDFix SDK " + pdfix.GetVersionMajor() + "." +

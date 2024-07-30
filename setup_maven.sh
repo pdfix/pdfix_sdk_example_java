@@ -14,18 +14,21 @@ pushd "$(dirname $0)"
 # unzip file.zip                                  && \
 # rm file.zip
 
-SDK_VER=8.0.1
-SDK_BUILD=1173
-SDK_HASH=cb032be6
+SDK_VER=8.1.5
+SDK_HASH=7fe88bf7
+
+arch=$(uname -m)
+
+https://github.com/pdfix/pdfix_sdk_builds/releases/download/8.1.5/pdfix_sdk_8.1.5_7fe88bf7_windows_x86_64.zip
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_linux.tar.gz"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_linux"_"$arch.tar.gz"
   EXTRACT="tar -xzvf"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_macos.zip"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_macos"_"$arch.zip"
   EXTRACT=unzip
 elif [[ "$OSTYPE" == "msys" ]]; then
-  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_windows.zip"
+  SDK_ZIP="pdfix_sdk_"$SDK_VER"_"$SDK_HASH"_windows"_"$arch.zip"
   EXTRACT=unzip
 else
   echo "error: unknown platform"
@@ -41,7 +44,15 @@ pushd pdfix                            && \
 curl -L -sS $SDK_URL > $SDK_ZIP && \
 $EXTRACT $SDK_ZIP                                  && \
 rm $SDK_ZIP
+popd
 
+JAR_FILE="net.pdfix.pdfixlib-$SDK_VER.jar.zip"
+JAR_URL="https://github.com/pdfix/pdfix_sdk_builds/releases/download/$SDK_VER/$JAR_FILE"
+mkdir -p lib && \
+pushd lib && \
+curl -L -sS $JAR_URL > $JAR_FILE && \
+unzip $JAR_FILE && \
+rm $JAR_FILE
 popd
 
 #update version number in maven project pom.xml

@@ -138,13 +138,6 @@ public class App {
                                         basePath + "/resources/make-accessible.json");
                 }
 
-                if (runTest("OcrWithTesseract")) {
-                        OcrWithTesseract.run(inputPath + "/scanned.pdf",
-                                        outputPath + "/OcrWithTesseract.pdf",
-                                        inputPath + ("/tessdata"),
-                                        "eng", 2.0F, PdfRotate.kRotate0);
-                }
-
                 if (runTest("RegexSearch")) {
                         RegexSearch.run(inputPath + "/test.pdf",
                                         "(\\d{4}[- ]){3}\\d{4}");
