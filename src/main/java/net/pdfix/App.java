@@ -1,11 +1,11 @@
 package net.pdfix;
 
+import net.pdfix.pdfixlib.PdfHtmlParams;
+import net.pdfix.pdfixlib.PdfImageParams;
 import net.pdfix.samples.*;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import net.pdfix.pdfixlib.*;
 
 public class App {
 
@@ -22,16 +22,11 @@ public class App {
         public static void main(String[] args) throws Exception {
 
                 String basePath = System.getProperty("user.dir"); // path to current folder
-                String pdfixPath = basePath + "/pdfix/bin"; // default path to pdfix bin folder
 
                 for (int i = 0; i < args.length; i++) {
-                        if (args[i].equals("--pdfix-bin") && i + 1 < args.length)
-                                pdfixPath = args[i + 1]; // update path to pdfix binaries
                         if (args[i].equals("--test") && i + 1 < args.length)
                                 testName = args[i + 1]; // update test name
                 }
-
-                System.out.println("pdfixPath: " + pdfixPath);
 
                 String inputPath = basePath + "/resources";
                 String outputPath = basePath + "/output";
@@ -40,7 +35,7 @@ public class App {
                 if (!Files.exists(Paths.get(outputPath)))
                         Files.createDirectory(Paths.get(outputPath));
 
-                Initialization.run(pdfixPath);
+                Initialization.run();
 
                 if (runTest("GetBookmarks")) {
                         GetBookmarks.run(inputPath + "/test.pdf");
@@ -138,12 +133,12 @@ public class App {
                                         basePath + "/resources/make-accessible.json");
                 }
 
-                if (runTest("OcrWithTesseract")) {
-                        OcrWithTesseract.run(inputPath + "/scanned.pdf",
-                                        outputPath + "/OcrWithTesseract.pdf",
-                                        inputPath + ("/tessdata"),
-                                        "eng", 2.0F, PdfRotate.kRotate0);
-                }
+                // if (runTest("OcrWithTesseract")) {
+                //         OcrWithTesseract.run(inputPath + "/scanned.pdf",
+                //                         outputPath + "/OcrWithTesseract.pdf",
+                //                         inputPath + ("/tessdata"),
+                //                         "eng", 2.0F, PdfRotate.kRotate0);
+                // }
 
                 if (runTest("RegexSearch")) {
                         RegexSearch.run(inputPath + "/test.pdf",

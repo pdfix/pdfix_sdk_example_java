@@ -25,7 +25,7 @@ public class MakeAccessible {
 
         if (commandPath.isEmpty()) {
             cmdStm = pdfix.CreateMemStream();
-            if ((cmdStm == null) || !command.SaveCommandsToStream(PsCommandType.kCommandMakeAccessible, cmdStm, PsDataFormat.kDataFormatJson,
+            if ((cmdStm == null) || !command.SaveCommandsToStream(PsCommandType.kActionMakeAccessible, cmdStm, PsDataFormat.kDataFormatJson,
                                                         Pdfix.kSaveFull))
             {
                 throw new Exception(pdfix.GetError());

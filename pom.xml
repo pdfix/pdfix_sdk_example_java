@@ -7,7 +7,7 @@
   <groupId>net.pdfix</groupId>
   <artifactId>net.pdfix.App</artifactId>
   <packaging>jar</packaging>
-  <version>8.0.1</version>
+  <version>8.2.0</version>
 
   <name>PDFix SDK Java Example</name>
   <url>https://pdfix.net</url>
@@ -31,11 +31,6 @@
       <version>${project.version}</version>
       <!-- <scope>compiler</scope> -->
   </dependency>    
-  <dependency>
-      <groupId>net.pdfix</groupId>
-      <artifactId>net.pdfix.ocrtesseract</artifactId>
-      <version>${project.version}</version>
-  </dependency>           
   </dependencies>
 
   <build>
@@ -108,7 +103,7 @@
                       <groupId>net.pdfix</groupId>
                       <artifactId>net.pdfix.pdfixlib</artifactId>
                       <version>${project.version}</version>
-                      <file>${pom.basedir}/pdfix/include/java/net.pdfix.pdfixlib-${project.version}.jar</file>
+                      <file>${pom.basedir}/lib/net.pdfix.pdfixlib-${project.version}.jar</file>
                       <packaging>jar</packaging>
                       <generatePom>true</generatePom>
                   </configuration>
@@ -116,24 +111,6 @@
                       <goal>install-file</goal>
                   </goals>
               </execution>
-
-              <execution>
-                <id>install-external-jar-ocrtesseract</id>
-                <phase>clean</phase>
-                <configuration>
-                    <repositoryLayout>default</repositoryLayout>
-                    <groupId>net.pdfix</groupId>
-                    <artifactId>net.pdfix.ocrtesseract</artifactId>
-                    <version>${project.version}</version>
-                    <file>${pom.basedir}/pdfix/include/java/net.pdfix.ocrtesseract-${project.version}.jar</file>
-                    <packaging>jar</packaging>
-                    <generatePom>true</generatePom>
-                </configuration>
-                <goals>
-                    <goal>install-file</goal>
-                </goals>
-            </execution>
-
           </executions>
       </plugin>
 

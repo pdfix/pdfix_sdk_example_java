@@ -16,32 +16,7 @@ public class Initialization {
         System.out.print(str);
     }
 
-    private static String getLibraryName(String name) throws Exception {
-
-        String os = System.getProperty("os.name").toLowerCase();
-        if ((os.indexOf("mac") >= 0) || (os.indexOf("darwin") >= 0)) {
-            if ("aarch64".equals(System.getProperty("os.arch")))
-                return "/arm64/lib" + name + ".dylib";
-            else
-                return "/x64/lib" + name + ".dylib";
-        } else if (os.indexOf("win") >= 0) {
-            if ("64".equals(System.getProperty("sun.arch.data.model")))
-                return "/x64/" + name + ".dll";
-            else
-                return "/x86/" + name + ".dll";
-        } else if (os.indexOf("nux") >= 0) {
-            return "/x64/lib" + name + ".so";
-        }
-        throw new Exception("Unsupported platform " + os);
-    }
-
-    public static void run(String libPath) throws Exception {
-
-        // load pdfix libraries
-        System.out.println("Load PDFix dynamic libraries:");
-
-        System.load(libPath + "/" + getLibraryName("pdf"));
-        System.load(libPath + "/" + getLibraryName("ocr_tesseract"));
+    public static void run() throws Exception {
 
         Pdfix pdfix = new Pdfix();
         System.out.println("PDFix SDK " + pdfix.GetVersionMajor() + "." +
