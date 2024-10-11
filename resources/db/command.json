@@ -1,0 +1,158 @@
+{
+    "commands": [
+        {
+            "expanded": true,
+            "name": "clear_structure",
+            "params": [
+                {
+                    "name": "clear_tags",
+                    "value": true
+                },
+                {
+                    "name": "clear_struct_tree",
+                    "value": true
+                },
+                {
+                    "name": "clear_bookmarks",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "name": "load_template",
+            "params": [
+                {
+                    "name": "template",
+                    "value": "<path to template>"
+                }
+            ]
+        },
+        {
+            "expanded": true,
+            "name": "add_tags",
+            "params": [
+                {
+                    "name": "standard_attrs",
+                    "value": false
+                },
+                {
+                    "name": "sequential_headings",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "expanded": true,
+            "name": "set_language",
+            "params": [
+                {
+                    "name": "lang",
+                    "value": "de-DE"
+                },
+                {
+                    "name": "apply_lang_to",
+                    "value": 0
+                },
+                {
+                    "name": "overwrite",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "expanded": true,
+            "name": "set_title",
+            "params": [
+                {
+                    "name": "title_type",
+                    "value": 1
+                },
+                {
+                    "name": "custom_text",
+                    "value": ""
+                },
+                {
+                    "name": "description_tag",
+                    "value": "H1"
+                },
+                {
+                    "name": "overwrite",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "name": "set_display_doc_title"
+        },
+        {
+            "expanded": true,
+            "name": "set_pdf_ua_standard",
+            "params": [
+                {
+                    "name": "part_number",
+                    "value": "1"
+                },
+                {
+                    "name": "rev_number",
+                    "value": "2023"
+                }
+            ]
+        },
+        {
+            "name": "set_suspect_value"
+        },
+        {
+            "name": "fix_oc_name"
+        },
+        {
+            "expanded": true,
+            "name": "fix_media_clip_keys",
+            "params": [
+                {
+                    "name": "ct_key",
+                    "value": "text/plain"
+                }
+            ]
+        },
+        {
+            "expanded": true,
+            "name": "create_bookmarks",
+            "params": [
+                {
+                    "name": "tag_1",
+                    "value": "H1"
+                },
+                {
+                    "name": "tag_2",
+                    "value": "H2"
+                },
+                {
+                    "name": "tag_3",
+                    "value": "H3"
+                },
+                {
+                    "name": "tag_4",
+                    "value": "H4"
+                },
+                {
+                    "name": "tag_5",
+                    "value": "H5"
+                },
+                {
+                    "name": "tag_6",
+                    "value": "H6"
+                },
+                {
+                    "name": "overwrite",
+                    "value": false
+                }
+            ]
+        }
+    ],
+    "desc": "DB Make the document PDF/UA compliant",
+    "flags": 1,
+    "name": "db_make_accessible",
+    "title": "DB Make Accessible",
+    "type": "default",
+    "version": 1
+}
