@@ -50,6 +50,10 @@ public class App {
                                         outputPath + "/RenderPage.jpg",
                                         2.0f);
                 }
+
+                if (runTest("OpenDocFromStream")) {
+                        OpenDocFromStream.run(inputPath + "/test.pdf");
+                }
                 ////////////////////////////////////////////////////
                 // Basic, Professional, Enterprise version
                 if (runTest("AddComment")) {
