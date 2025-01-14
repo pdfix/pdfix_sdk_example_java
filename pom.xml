@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <pdfixlib.version>8.4.3</pdfixlib.version>
   </properties>
 
   <dependencies>
@@ -28,7 +29,7 @@
     <dependency>
       <groupId>net.pdfix</groupId>
       <artifactId>net.pdfix.pdfixlib</artifactId>
-      <version>[8,]</version>
+      <version>[${pdfixlib.version},]</version>
     </dependency>
   </dependencies>
 
@@ -101,8 +102,8 @@
               <repositoryLayout>default</repositoryLayout>
               <groupId>net.pdfix</groupId>
               <artifactId>net.pdfix.pdfixlib</artifactId>
-              <version>${project.version}</version>
-              <file>${pom.basedir}/lib/net.pdfix.pdfixlib-${project.version}.jar</file>
+              <version>[${pdfixlib.version},]</version>
+              <file>${pom.basedir}/lib/net.pdfix.pdfixlib-${pdfixlib.version}.jar</file>
               <packaging>jar</packaging>
               <generatePom>true</generatePom>
             </configuration>
