@@ -122,6 +122,10 @@ public class App {
                                         configPath);
                 }
 
+                if (runTest("ExtractEmbeddedFiles")) {
+                        ExtractEmbeddedFiles.run(inputPath + "/test.pdf", outputPath + "/");
+                }
+
                 if (runTest("FlattenAnnots")) {
                         FlattenAnnots.run(inputPath + "/test.pdf",
                                         outputPath + "/FlattenAnnots.pdf");
@@ -138,10 +142,10 @@ public class App {
                 }
 
                 // if (runTest("OcrWithTesseract")) {
-                //         OcrWithTesseract.run(inputPath + "/scanned.pdf",
-                //                         outputPath + "/OcrWithTesseract.pdf",
-                //                         inputPath + ("/tessdata"),
-                //                         "eng", 2.0F, PdfRotate.kRotate0);
+                // OcrWithTesseract.run(inputPath + "/scanned.pdf",
+                // outputPath + "/OcrWithTesseract.pdf",
+                // inputPath + ("/tessdata"),
+                // "eng", 2.0F, PdfRotate.kRotate0);
                 // }
 
                 if (runTest("RegexSearch")) {
