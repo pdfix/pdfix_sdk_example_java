@@ -7,7 +7,7 @@
   <groupId>net.pdfix</groupId>
   <artifactId>net.pdfix.App</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.0</version>
+  <version>8.7.10</version>
 
   <name>PDFix SDK Java Example</name>
   <url>https://pdfix.net</url>
@@ -22,13 +22,13 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.pdfix</groupId>
       <artifactId>net.pdfix.pdfixlib</artifactId>
-      <version>[8,]</version>
+      <version>[8.7.10]</version>
     </dependency>
   </dependencies>
 
