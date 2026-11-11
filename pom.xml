@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <pdfixlib.version>8.7.16</pdfixlib.version>
+    <pdfixlib.version>9.3.0</pdfixlib.version>
   </properties>
 
   <dependencies>
