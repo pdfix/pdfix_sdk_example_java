@@ -83,6 +83,22 @@ public class TagTableAsFigure {
         return null;
     }
 
+    // HasChildOfType
+    // check if the struct element has a direct kid struct element of the given type
+    private static boolean HasChildOfType(PdsStructElement struct_elem, String type) {
+        for (int i = 0; i < struct_elem.GetNumChildren(); i++) {
+            if (struct_elem.GetChildType(i) != PdfStructElementType.kPdsStructChildElement) {
+                continue;
+            }
+            PdsObject kid_obj = struct_elem.GetChildObject(i);
+            PdsStructElement kid_elem = struct_elem.GetStructTree().GetStructElementFromObject(kid_obj);
+            if (kid_elem != null && kid_elem.GetType(true).compareTo(type) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static PdsStructElement GetFirstTable(PdsStructTree struct_tree) throws Exception {
         for (int i = 0; i < struct_tree.GetNumChildren(); i++) {
             PdsObject kid_obj = struct_tree.GetChildObject(i);
@@ -141,6 +157,10 @@ public class TagTableAsFigure {
         }
         if (!page_map.AddTags(table, false, new PdfTagsParams())) {
             throw new Exception(Integer.toString(pdfix.GetErrorType()));
+        }
+        // AddTags must put the new Figure into the table element passed as the parent
+        if (!HasChildOfType(table, "Figure")) {
+            throw new Exception("Figure was not tagged into the table element.");
         }
         // udpate the table element type
         if (!table.SetType("Sect")) {
